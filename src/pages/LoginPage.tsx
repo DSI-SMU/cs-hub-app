@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { TextField, Button, Card, Typography, Grid, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between', // Space between header, main content, and footer
         minHeight: '100vh', // Full view height
         backgroundColor: '#E1F5FE', // Light blue background color
+        paddingTop: '64px',
     },
     card: {
         maxWidth: 480, // Allows the card to be a bit wider
@@ -76,7 +77,7 @@ const LoginPage: React.FC = () => {
                     </Typography>
                     <TextField
                         className={classes.textField}
-                        label="Email address*"
+                        label="Email address"
                         type="email"
                         fullWidth
                         required
@@ -86,7 +87,7 @@ const LoginPage: React.FC = () => {
                     />
                     <TextField
                         className={classes.textField}
-                        label="Password*"
+                        label="Password"
                         type="password"
                         fullWidth
                         required

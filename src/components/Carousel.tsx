@@ -1,39 +1,38 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import Slider, { Settings } from 'react-slick';
 import { makeStyles } from '@material-ui/core/styles';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-interface CarouselSlide {
+interface CarouselProps {
+  slides: Array<{
     id: number;
     title: string;
-    description: string;
-    backgroundImage: string;
+    subtitle: string;
+    imageUrl: string;
+  }>;
 }
 
-const slidesData: CarouselSlide[] = [
-    { id: 1, title: '1st Slide', description: 'Description of the first slide.', backgroundImage: '/images/starfield-banner-blue.jpg' },
-    { id: 2, title: '2nd Slide', description: 'Description of the second slide.', backgroundImage: '/images/starfield-banner-blue.jpg' },
-    // Add more slides as needed
-];
-
 const useStyles = makeStyles(() => ({
-    item: {
-        background: `url(${process.env.PUBLIC_URL + '/images/starfield-banner-blue.jpg'}) no-repeat center center`,
-        backgroundSize: 'cover',
-        height: '500px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        color: 'white',
+    carousel: {
+        position: 'relative',
+        '& .slick-slide': {
+            textAlign: 'center',
+            color: 'white',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '300px', 
+        },
+    // Add other styles if needed
     },
+    // Define your custom prev/next arrow styles here
 }));
 
-const Carousel: React.FC = () => {
+const Carousel: React.FC<CarouselProps> = ({ slides }) => {
     const classes = useStyles();
-    
-    const sliderRef = useRef<Slider | null>(null);
 
     const settings: Settings = {
         dots: true,
@@ -42,16 +41,20 @@ const Carousel: React.FC = () => {
         slidesToShow: 1,
         slidesToScroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000
+        autoplaySpeed: 3000,
+    // You can also add custom prev/next arrows if needed
     };
 
     return (
-        <div>
-            <Slider ref={sliderRef} {...settings}>
-                {slidesData.map((slide) => (
-                    <div key={slide.id} className={classes.item}>
-                        <h3>{slide.title}</h3>
-                        <p>{slide.description}</p>
+        <div className={classes.carousel}>
+            <Slider {...settings}>
+                {slides.map(slide => (
+                    <div
+                        key={slide.id}
+                        style={{ backgroundImage: `url(${slide.imageUrl})` }}
+                    >
+                        <h2>{slide.title}</h2>
+                        <p>{slide.subtitle}</p>
                     </div>
                 ))}
             </Slider>

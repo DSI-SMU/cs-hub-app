@@ -22,11 +22,26 @@ const useStyles = makeStyles(() => ({
 const HomePage: React.FC = () => {
     const classes = useStyles();
 
+    const slides = [
+        {
+            id: 1,
+            title: 'First Slide',
+            subtitle: 'This is the first slide',
+            imageUrl: '/images/starfield-banner-blue.jpg',
+        },
+        {
+            id: 2,
+            title: 'Second Slide',
+            subtitle: 'This is the second slide',
+            imageUrl: '/images/starfield-banner-blue.jpg',
+        },
+    ];
+
     return (
         <div className={classes.siteContainer}>
             <Header />
             <div className={classes.contentWrap}>
-                <Carousel />
+                <Carousel slides={slides}/>
             </div>
             <Footer />
         </div>

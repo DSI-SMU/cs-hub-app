@@ -10,16 +10,17 @@ const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-between', // Space between header, main content, and footer
         minHeight: '100vh', // Full view height
         backgroundColor: '#E1F5FE', // Light blue background color
         paddingTop: '64px',
+        paddingBottom: '64px',
     },
     card: {
-        maxWidth: 480, // Allows the card to be a bit wider
+        maxWidth: 450, // Allows the card to be a bit wider
         margin: theme.spacing(6, 2), // Top and Bottom margin
         padding: theme.spacing(4),
         alignSelf: 'center', // Center the card
+        width: '100%',
     },
     title: {
         textAlign: 'center',
@@ -35,14 +36,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between', // Distribute space between links
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1), // Give some space at the bottom
-    },
-    textField: {
-    // Override styles to remove notched outline on focused input
-        '& .MuiOutlinedInput-root': {
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                border: 'none', // Remove border
-            },
-        },
     },
     recaptcha: {
         display: 'flex',
@@ -68,65 +61,64 @@ const LoginPage: React.FC = () => {
     };
 
     return (
-        <div className={classes.container}>
+        <>
             <Header />
-            <Card className={classes.card}>
-                <form onSubmit={handleSubmit}>
-                    <Typography variant="h4" className={classes.title}>
+            <div className={classes.container}>
+                <Card className={classes.card}>
+                    <form onSubmit={handleSubmit}>
+                        <Typography variant="h4" className={classes.title}>
             Log in
-                    </Typography>
-                    <TextField
-                        className={classes.textField}
-                        label="Email address"
-                        type="email"
-                        fullWidth
-                        required
-                        autoFocus
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <TextField
-                        className={classes.textField}
-                        label="Password"
-                        type="password"
-                        fullWidth
-                        required
-                        margin="normal"
-                        variant="outlined"
-                    />
-                    <ReCAPTCHA
-                        className={classes.recaptcha}
-                        sitekey="6LfJMTIUAAAAAGb6Z-ozu_yC3PpL_sJjb8cGN7On" // Replace with your actual site key
-                        onChange={handleRecaptchaChange}
-                        style={{ margin: '8px 0' }}
-                    />
-                    <Button
-                        type="submit"
-                        fullWidth
-                        variant="contained"
-                        color="primary"
-                        className={classes.submitButton}
-                        disabled={!recaptchaValue}
-                    >
-                        Sign in
-                        <i className="material-icons right">exit_to_app</i>
-                    </Button>
-                </form>
-                <Grid container className={classes.linksContainer}>
-                    <Grid item xs={6}>
-                        <Link href="#" variant="body2" className={classes.link}>
-              Forgot password?
-                        </Link>
-                    </Grid>
-                    <Grid item xs={6} style={{ textAlign: 'right' }}>
-                        <Typography variant="body2" className={classes.link}>
-              New User? <Link href="#">Sign up</Link>
                         </Typography>
+                        <TextField
+                            label="Email address"
+                            type="email"
+                            fullWidth
+                            required
+                            autoFocus
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <TextField
+                            label="Password"
+                            type="password"
+                            fullWidth
+                            required
+                            margin="normal"
+                            variant="outlined"
+                        />
+                        <ReCAPTCHA
+                            className={classes.recaptcha}
+                            sitekey="6LfJMTIUAAAAAGb6Z-ozu_yC3PpL_sJjb8cGN7On" // Replace with your actual site key
+                            onChange={handleRecaptchaChange}
+                            style={{ margin: '8px 0' }}
+                        />
+                        <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            className={classes.submitButton}
+                            disabled={!recaptchaValue}
+                        >
+                        Sign in
+                        </Button>
+                    </form>
+                    <Grid container className={classes.linksContainer}>
+                        <Grid item xs={6}>
+                            <Link href="#" variant="body2" className={classes.link}>
+              Forgot password?
+                            </Link>
+                        </Grid>
+                        <Grid item xs={6} style={{ textAlign: 'right' }}>
+                            <Typography variant="body2" className={classes.link}>
+              New User? <Link href="#">Sign up</Link>
+                            </Typography>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Card>
+                </Card>
+            </div>
             <Footer />
-        </div>
+        </>
     );
 };
 

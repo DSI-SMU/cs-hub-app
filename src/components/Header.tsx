@@ -1,35 +1,37 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import HomeIcon from '@material-ui/icons/Home';
+import LoginIcon from '@material-ui/icons/ExitToApp';
+import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles((theme) => ({
     header: {
-        position: 'fixed',  // Make the header fixed
-        top: 0,             // Align the header to the top
-        left: 0,            // Align the header to the left
-        width: '100%',      // Ensure the header is full width
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 20px',
         background: 'url("/images/starfield-banner-blue.jpg") repeat-x',
         height: '64px',
-        zIndex: 1100, // The zIndex should be higher than other elements to keep it on top
+        zIndex: 1100,
     },
     logo: {
         height: '50px',
-        marginRight: '20px',
+        marginLeft: '10px',
     },
     navItems: {
         display: 'flex',
         alignItems: 'center',
-        '& > * + *': {
-            marginLeft: '20px',
+        '& > *': {
+            marginRight: '15px',
         },
     },
     icon: {
-        color: 'white', // This sets the color of the icons
-        textDecoration: 'none', // Removes underline from links
+        color: 'white',
+        textDecoration: 'none',
     },
 }));
 
@@ -44,12 +46,12 @@ const Header: React.FC = () => {
                 </a>
             </span>
             <div className={classes.navItems}>
-                <a href="/" title="Home" className={classes.icon}>
-                    <i className="material-icons">home</i>
-                </a>
-                <a href="/login" title="Login" className={classes.icon}>
-                    <i className="material-icons">login</i>
-                </a>
+                <Link to="/" title="Home" className={classes.icon}>
+                    <HomeIcon />
+                </Link>
+                <Link to="/login" title="Login" className={classes.icon}>
+                    <LoginIcon />
+                </Link>
             </div>
         </header>
     );

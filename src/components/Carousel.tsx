@@ -1,8 +1,10 @@
-import React from 'react';
-import Slider, { Settings } from 'react-slick';
+import Slider, { CustomArrowProps, Settings } from 'react-slick';
 import { makeStyles } from '@material-ui/core/styles';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'; // Import left arrow icon
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'; // Import right arrow icon
 
 interface CarouselProps {
   slides: Array<{
@@ -28,6 +30,24 @@ const useStyles = makeStyles(() => ({
             height: '300px',
             backgroundImage: 'url(\'/images/starfield-banner-blue.jpg\')',
         },
+        '& .slick-dots': {
+            bottom: '10px',
+        },
+        '& .slick-dots li button:before': {
+            color: 'white', // Sets the default color of the dots
+        },
+        '& .slick-dots li.slick-active button:before': {
+            color: 'white', // Sets the color of the active dot
+        },
+        '& .slick-arrow': {
+            zIndex: 1,
+        },
+        '& .slick-prev': {
+            left: '10px',
+        },
+        '& .slick-next': {
+            right: '10px',
+        },
     // Add other styles if needed
     },
     textContainer: {
@@ -38,8 +58,29 @@ const useStyles = makeStyles(() => ({
         justifyContent: 'center', // Centers text vertically
         alignItems: 'center', // Centers text horizontally
     },
-    // Define your custom prev/next arrow styles here
 }));
+
+// Custom arrow component for the previous arrow
+const PrevArrow: React.FC<CustomArrowProps> = ({ className, style, onClick }) => {
+    return (
+        <ArrowBackIosIcon
+            className={className}
+            style={{ ...style, color: 'white' }}
+            onClick={onClick}
+        />
+    );
+};
+
+// Custom arrow component for the next arrow
+const NextArrow: React.FC<CustomArrowProps> = ({ className, style, onClick }) => {
+    return (
+        <ArrowForwardIosIcon
+            className={className}
+            style={{ ...style, color: 'white' }}
+            onClick={onClick}
+        />
+    );
+};
 
 const Carousel: React.FC<CarouselProps> = ({ slides }) => {
     const classes = useStyles();
@@ -52,7 +93,8 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-    // You can also add custom prev/next arrows if needed
+        nextArrow: <NextArrow />,
+        prevArrow: <PrevArrow />,
     };
 
     return (

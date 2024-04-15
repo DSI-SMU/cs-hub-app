@@ -11,42 +11,77 @@ import ViewQuiltIcon from '@material-ui/icons/ViewQuilt';
 import { Grid } from '@material-ui/core';
 import CardGrid from '../components/CardGrid';
 
-const cardInfos = [{
-    title: 'Project',
-    items: [
-        {
-            text: 'No Default Project',
-            icon: <ViewListIcon />,
-        },
-        {
-            text: 'Projects List',
-            icon: <ViewModuleIcon />,
-        },
-        {
-            text: 'Users List',
-            icon: <ViewQuiltIcon />,
-        },
-    // ... add more items as needed
-    ]
-}
-, {
-    title: 'Project',
-    items: [
-        {
-            text: 'No Default Project',
-            icon: <ViewListIcon />,
-        },
-        {
-            text: 'Projects List',
-            icon: <ViewModuleIcon />,
-        },
-        {
-            text: 'Users List',
-            icon: <ViewQuiltIcon />,
-        },
-    // ... add more items as needed
-    ]
-}];
+const cardInfos = [
+    {
+        title: 'Projects',
+        items: [
+            {
+                text: 'No Default Project',
+                icon: <ViewListIcon />,
+            },
+            {
+                text: 'Projects List',
+                icon: <ViewModuleIcon />,
+            },
+            {
+                text: 'Users List',
+                icon: <ViewQuiltIcon />,
+            },
+            // ... add more items as needed
+        ]
+    }
+    , {
+        title: 'NASA Researchers',
+        items: [
+            {
+                text: 'NASA Researchers',
+                icon: <ViewListIcon />,
+            },
+            {
+                text: 'Technologies',
+                icon: <ViewModuleIcon />,
+            },
+            {
+                text: 'Find Researchers',
+                icon: <ViewQuiltIcon />,
+            },
+        ]
+    }
+    , {
+        title: 'My Dashboard',
+        items: [
+            {
+                text: 'My Followers',
+                icon: <ViewListIcon />,
+            },
+            {
+                text: 'My Followees',
+                icon: <ViewModuleIcon />,
+            },
+            {
+                text: 'My Network',
+                icon: <ViewQuiltIcon />,
+            },
+        ]
+    }
+    , {
+        title: 'Collaboration Server',
+        items: [
+            {
+                text: 'Visual Tutorials',
+                icon: <ViewListIcon />,
+            },
+            {
+                text: 'About NASA',
+                icon: <ViewModuleIcon />,
+            },
+            {
+                text: 'NASA Collaboration Server',
+                icon: <ViewQuiltIcon />,
+            },
+        ]
+    }
+];
 
 const useStyles = makeStyles(() => ({
     siteContainer: {
@@ -60,6 +95,9 @@ const useStyles = makeStyles(() => ({
         flex: 1,
         width: '100%',
         paddingTop: '64px', // Add top padding equal to the height of the header
+    },
+    gridContainer: {
+        flexGrow: 1,
     },
 }));
 
@@ -86,11 +124,13 @@ const HomePage: React.FC = () => {
             <Header />
             <div className={classes.contentWrap}>
                 <Carousel slides={slides}/>
-                {cardInfos.map((section, index) => (
-                    <Grid item xs={12} sm={6} md={3} key={index}>
-                        <CardGrid cardInfo={section} />
-                    </Grid>
-                ))}
+                <Grid container spacing={2} className={classes.gridContainer}>
+                    {cardInfos.map((section, index) => (
+                        <Grid item xs={12} sm={6} md={3} key={index}>
+                            <CardGrid cardInfo={section} />
+                        </Grid>
+                    ))}
+                </Grid>
             </div>
             <Footer />
         </div>

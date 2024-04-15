@@ -19,14 +19,24 @@ const useStyles = makeStyles(() => ({
         '& .slick-slide': {
             textAlign: 'center',
             color: 'white',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundSize: 'initial', // This will keep the image at its original size
+            backgroundRepeat: 'repeat', // This will tile the image
+            backgroundPosition: 'center center',
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            height: '300px', 
+            height: '300px',
+            backgroundImage: 'url(\'/images/starfield-banner-blue.jpg\')',
         },
     // Add other styles if needed
+    },
+    textContainer: {
+        width: '100%', // Ensure it spans the full width of the slide
+        height: '100%', // Ensure it spans the full height of the slide
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center', // Centers text vertically
+        alignItems: 'center', // Centers text horizontally
     },
     // Define your custom prev/next arrow styles here
 }));
@@ -48,13 +58,15 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
     return (
         <div className={classes.carousel}>
             <Slider {...settings}>
-                {slides.map(slide => (
+                {slides.map((slide) => (
                     <div
                         key={slide.id}
-                        style={{ backgroundImage: `url(${slide.imageUrl})` }}
+                        className="slick-slide"
                     >
-                        <h2>{slide.title}</h2>
-                        <p>{slide.subtitle}</p>
+                        <div className={classes.textContainer}>
+                            <h1>{slide.title}</h1>
+                            <h2>{slide.subtitle}</h2>
+                        </div>
                     </div>
                 ))}
             </Slider>

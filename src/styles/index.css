@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Amazon Ember';
+  src: url('/public/fonts/Amazon-Ember-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Amazon Ember';
+  src: url('/public/fonts/Amazon-Ember-Light.ttf') format('truetype');
+  font-weight: 300; /* Light */
+  font-style: normal;
+}
+
+body {
+  font-family: 'Amazon Ember', sans-serif;
+}
+
+h1, h2, h3 {
+  font-weight: bold; /* Will use Amazon-Ember-Bold */
+}
+
+p, span, a {
+  font-weight: 300; /* Will use Amazon-Ember-Light */
+}

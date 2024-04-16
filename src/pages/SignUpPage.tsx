@@ -1,11 +1,10 @@
-// LoginPage.tsx
+// SignUpPage.tsx
 import React, { useState } from 'react';
 import { TextField, Button, Card, Typography, Grid, Link } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { login } from '../apis/authService';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -48,38 +47,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const LoginPage: React.FC = () => {
+const SignUpPage: React.FC = () => {
     const classes = useStyles();
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [name, setName] = useState('');
     const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
 
     const handleRecaptchaChange = (value: string | null) => {
         setRecaptchaValue(value);
     };
 
-    // ...[rest of your state and useStyles]
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-
-    // Update the input fields state
-    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
-    };
-
-    const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setPassword(event.target.value);
-    };
-
-    // Updated handleSubmit function
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        try {
-            const token = await login({ email, password });
-            console.log(token); // Handle the token as needed
-            // Redirect to dashboard or another page
-        } catch (error) {
-            console.error('Login failed:', error);
-            // Handle errors, show messages, etc.
-        }
+        const finalUsername = username || email; // If username is not provided, use email
+
+        // Here, you would send the data to the server
+        console.log({ name, email, username: finalUsername, password });
+
+    // You can handle the response accordingly
+    // If successful, redirect to login page or dashboard
     };
 
     return (
@@ -89,17 +77,34 @@ const LoginPage: React.FC = () => {
                 <Card className={classes.card}>
                     <form onSubmit={handleSubmit}>
                         <Typography variant="h4" className={classes.title}>
-            Log in
+              Sign Up
                         </Typography>
                         <TextField
-                            label="Email address"
-                            type="email"
+                            label="Name"
+                            type="text"
                             fullWidth
                             required
                             autoFocus
                             margin="normal"
                             variant="outlined"
-                            onChange={handleEmailChange}
+                            onChange={e => setName(e.target.value)}
+                        />
+                        <TextField
+                            label="Email Address"
+                            type="email"
+                            fullWidth
+                            required
+                            margin="normal"
+                            variant="outlined"
+                            onChange={e => setEmail(e.target.value)}
+                        />
+                        <TextField
+                            label="Username"
+                            type="text"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            onChange={e => setUsername(e.target.value)}
                         />
                         <TextField
                             label="Password"
@@ -108,7 +113,7 @@ const LoginPage: React.FC = () => {
                             required
                             margin="normal"
                             variant="outlined"
-                            onChange={handlePasswordChange}
+                            onChange={e => setPassword(e.target.value)}
                         />
                         <ReCAPTCHA
                             className={classes.recaptcha}
@@ -124,18 +129,13 @@ const LoginPage: React.FC = () => {
                             className={classes.submitButton}
                             disabled={!recaptchaValue}
                         >
-                        Sign in
+              Sign Up
                         </Button>
                     </form>
                     <Grid container className={classes.linksContainer}>
-                        <Grid item xs={6}>
-                            <Link href="#" variant="body2" className={classes.link}>
-              Forgot password?
-                            </Link>
-                        </Grid>
-                        <Grid item xs={6} style={{ textAlign: 'right' }}>
+                        <Grid item xs={12} style={{ textAlign: 'center' }}>
                             <Typography variant="body2" className={classes.link}>
-              New User? <Link href="/sign-up">Sign up</Link>
+                Already have an account? <Link href="/login">Log in</Link>
                             </Typography>
                         </Grid>
                     </Grid>
@@ -146,4 +146,4 @@ const LoginPage: React.FC = () => {
     );
 };
 
-export default LoginPage;
+export default SignUpPage;

@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { signUp } from '../apis/authService';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -66,8 +67,14 @@ const SignUpPage: React.FC = () => {
         // Here, you would send the data to the server
         console.log({ name, email, username: finalUsername, password });
 
-    // You can handle the response accordingly
-    // If successful, redirect to login page or dashboard
+        try {
+            const token = await signUp({ name, username: finalUsername, email, password });
+            console.log(token); // Handle the token as needed
+            // Redirect to dashboard or another page
+        } catch (error) {
+            console.error('Login failed:', error);
+            // Handle errors, show messages, etc.
+        }
     };
 
     return (
@@ -77,7 +84,7 @@ const SignUpPage: React.FC = () => {
                 <Card className={classes.card}>
                     <form onSubmit={handleSubmit}>
                         <Typography variant="h4" className={classes.title}>
-              Sign Up
+                            Sign Up
                         </Typography>
                         <TextField
                             label="Name"
@@ -129,7 +136,7 @@ const SignUpPage: React.FC = () => {
                             className={classes.submitButton}
                             disabled={!recaptchaValue}
                         >
-              Sign Up
+                            Sign Up
                         </Button>
                     </form>
                     <Grid container className={classes.linksContainer}>

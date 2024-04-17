@@ -6,6 +6,8 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { signUp } from '../apis/authService';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -48,8 +50,11 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+
+
 const SignUpPage: React.FC = () => {
     const classes = useStyles();
+    const [errorMsg, setErrorMsg] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -60,6 +65,8 @@ const SignUpPage: React.FC = () => {
         setRecaptchaValue(value);
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const finalUsername = username || email; // If username is not provided, use email
@@ -68,12 +75,23 @@ const SignUpPage: React.FC = () => {
         console.log({ name, email, username: finalUsername, password });
 
         try {
-            const token = await signUp({ name, username: finalUsername, email, password });
-            console.log(token); // Handle the token as needed
-            // Redirect to dashboard or another page
+            await signUp({ name, username: finalUsername, email, password }).then(() => { 
+                navigate('/login');
+            });
+            
         } catch (error) {
-            console.error('Login failed:', error);
-            // Handle errors, show messages, etc.
+            console.error('Sign up failed:', error);
+            if (axios.isAxiosError(error)) {
+                if (error.response && error.response.data && error.response.data.message) {
+                    setErrorMsg(error.response.data.message);
+                } else {
+                    setErrorMsg('An unexpected error occurred. Please try again.');
+                }
+            } else {
+            // Handle non-Axios errors
+                setErrorMsg('An error occurred. Please try again.');
+            }
+            console.error('this is the error'+errorMsg);
         }
     };
 
@@ -86,6 +104,11 @@ const SignUpPage: React.FC = () => {
                         <Typography variant="h4" className={classes.title}>
                             Sign Up
                         </Typography>
+                        {errorMsg && (
+                            <Typography color="error" style={{ textAlign: 'center' }}>
+                                {errorMsg}
+                            </Typography>
+                        )}
                         <TextField
                             label="Name"
                             type="text"

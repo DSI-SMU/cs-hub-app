@@ -6,12 +6,13 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { login } from '../apis/authService';
+import { useNavigate } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     container: {
         display: 'flex',
         flexDirection: 'column',
-        minHeight: '100vh', // Full view height
+        minHeight: 'calc(100vh - 128px)', // Full view height
         backgroundColor: '#E1F5FE', // Light blue background color
         paddingTop: '64px',
         paddingBottom: '64px',
@@ -57,12 +58,14 @@ const LoginPage: React.FC = () => {
     };
 
     // ...[rest of your state and useStyles]
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
 
     // Update the input fields state
-    const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setEmail(event.target.value);
+    const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value);
     };
 
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +76,9 @@ const LoginPage: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const token = await login({ email, password });
+            const token = await login({ username, password }).then(() => {
+                navigate('/');
+            });
             console.log(token); // Handle the token as needed
             // Redirect to dashboard or another page
         } catch (error) {
@@ -92,14 +97,14 @@ const LoginPage: React.FC = () => {
             Log in
                         </Typography>
                         <TextField
-                            label="Email address"
-                            type="email"
+                            label="Username"
+                            type="text"
                             fullWidth
                             required
                             autoFocus
                             margin="normal"
                             variant="outlined"
-                            onChange={handleEmailChange}
+                            onChange={handleUsernameChange}
                         />
                         <TextField
                             label="Password"
@@ -129,7 +134,7 @@ const LoginPage: React.FC = () => {
                     </form>
                     <Grid container className={classes.linksContainer}>
                         <Grid item xs={6}>
-                            <Link href="#" variant="body2" className={classes.link}>
+                            <Link href="/password" variant="body2" className={classes.link}>
               Forgot password?
                             </Link>
                         </Grid>

@@ -91,7 +91,6 @@ const SignUpPage: React.FC = () => {
             // Handle non-Axios errors
                 setErrorMsg('An error occurred. Please try again.');
             }
-            console.error('this is the error'+errorMsg);
         }
     };
 
@@ -120,6 +119,14 @@ const SignUpPage: React.FC = () => {
                             onChange={e => setName(e.target.value)}
                         />
                         <TextField
+                            label="Username"
+                            type="text"
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            onChange={e => setUsername(e.target.value)}
+                        />
+                        <TextField
                             label="Email Address"
                             type="email"
                             fullWidth
@@ -127,14 +134,6 @@ const SignUpPage: React.FC = () => {
                             margin="normal"
                             variant="outlined"
                             onChange={e => setEmail(e.target.value)}
-                        />
-                        <TextField
-                            label="Username"
-                            type="text"
-                            fullWidth
-                            margin="normal"
-                            variant="outlined"
-                            onChange={e => setUsername(e.target.value)}
                         />
                         <TextField
                             label="Password"

@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { BACKEND_BASE_URL } from '../config';
 
-const BASE_API_URL: string | undefined = BACKEND_BASE_URL + '/api/';
+const BASE_API_URL: string | undefined = BACKEND_BASE_URL + '/auth/';
 
 // Define the structure of the login payload
 interface LoginPayload {
-  email: string;
-  password: string;
+    username: string;
+    password: string;
 }
 
 interface SignUpPayload {

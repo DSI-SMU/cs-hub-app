@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { signUp } from '../apis/authService';
+import { signUp } from '../apis/AuthService';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -121,6 +121,7 @@ const SignUpPage: React.FC = () => {
                         <TextField
                             label="Username"
                             type="text"
+                            required
                             fullWidth
                             margin="normal"
                             variant="outlined"

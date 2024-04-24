@@ -5,8 +5,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { login } from '../apis/authService';
+import { login } from '../apis/AuthService';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -57,9 +58,9 @@ const LoginPage: React.FC = () => {
         setRecaptchaValue(value);
     };
 
-    // ...[rest of your state and useStyles]
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
 
 
@@ -76,14 +77,21 @@ const LoginPage: React.FC = () => {
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const token = await login({ username, password }).then(() => {
+            await login({ username, password }).then(() => {
                 navigate('/');
             });
-            console.log(token); // Handle the token as needed
-            // Redirect to dashboard or another page
         } catch (error) {
             console.error('Login failed:', error);
-            // Handle errors, show messages, etc.
+            if (axios.isAxiosError(error)) {
+                if (error.response && error.response.data && error.response.data.message) {
+                    setErrorMsg(error.response.data.message);
+                } else {
+                    setErrorMsg('An unexpected error occurred. Please try again.');
+                }
+            } else {
+            // Handle non-Axios errors
+                setErrorMsg('An error occurred. Please try again.');
+            }
         }
     };
 
@@ -96,6 +104,11 @@ const LoginPage: React.FC = () => {
                         <Typography variant="h4" className={classes.title}>
             Log in
                         </Typography>
+                        {errorMsg && (
+                            <Typography color="error" style={{ textAlign: 'center' }}>
+                                {errorMsg}
+                            </Typography>
+                        )}
                         <TextField
                             label="Username"
                             type="text"

@@ -50,3 +50,16 @@ export const signUp = async (payload: SignUpPayload) => {
         });
 
 };
+
+export const resetPassword = (email: string) => {
+    return axios
+        .get(BASE_API_URL + `reset-link/${email}`)
+        .then((response) => {
+            // Handle success - maybe show a success message to the user
+            console.log(response.data);
+        })
+        .catch((error) => {
+            // Handle error - show an error message to the user
+            console.error('Error sending reset email:', error);
+        });
+};

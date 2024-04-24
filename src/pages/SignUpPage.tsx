@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import { signUp } from '../apis/AuthService';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Snackbar from '../components/Snackbar';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -54,12 +55,14 @@ const useStyles = makeStyles((theme) => ({
 
 const SignUpPage: React.FC = () => {
     const classes = useStyles();
-    const [errorMsg, setErrorMsg] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
     const [recaptchaValue, setRecaptchaValue] = useState<string | null>(null);
+    const [message, setMessage] = useState<string>('');
+    const [messageType, setMessageType] = useState<'success' | 'error'>('success');
+    const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
 
     const handleRecaptchaChange = (value: string | null) => {
         setRecaptchaValue(value);
@@ -81,33 +84,40 @@ const SignUpPage: React.FC = () => {
             
         } catch (error) {
             console.error('Sign up failed:', error);
+            setMessageType('error');
             if (axios.isAxiosError(error)) {
                 if (error.response && error.response.data && error.response.data.message) {
-                    setErrorMsg(error.response.data.message);
+                    setMessage(error.response.data.message);
                 } else {
-                    setErrorMsg('An unexpected error occurred. Please try again.');
+                    setMessage('An unexpected error occurred. Please try again.');
                 }
             } else {
             // Handle non-Axios errors
-                setErrorMsg('An error occurred. Please try again.');
+                setMessage('An error occurred. Please try again.');
             }
+            setOpenSnackbar(true);
         }
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
     };
 
     return (
         <>
             <Header />
             <div className={classes.container}>
+                <Snackbar
+                    open={openSnackbar}
+                    onClose={handleCloseSnackbar}
+                    message={message}
+                    type={messageType}
+                />
                 <Card className={classes.card}>
                     <form onSubmit={handleSubmit}>
                         <Typography variant="h4" className={classes.title}>
                             Sign Up
                         </Typography>
-                        {errorMsg && (
-                            <Typography color="error" style={{ textAlign: 'center' }}>
-                                {errorMsg}
-                            </Typography>
-                        )}
                         <TextField
                             label="Name"
                             type="text"

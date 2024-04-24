@@ -3,7 +3,7 @@ import { TextField, Button, Card, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { resetPassword } from '../apis/AuthService';
+import { requestResetLink } from '../apis/AuthService';
 import axios from 'axios';
 import Snackbar from '../components/Snackbar';
 
@@ -30,15 +30,15 @@ const useStyles = makeStyles((theme) => ({
     },
     submitButton: {
         marginTop: theme.spacing(4),
-    },
+    }
 }));
 
 const ForgetPasswordPage: React.FC = () => {
     const classes = useStyles();
-    const [email, setEmail] = useState('');
-    const [errorMsg, setErrorMsg] = useState('');
-    const [successMsg, setSuccessMsg] = useState('');
-    const [openSnackbar, setOpenSnackbar] = useState(false);
+    const [email, setEmail] = useState<string>('');
+    const [message, setMessage] = useState<string>('');
+    const [messageType, setMessageType] = useState<'success' | 'error'>('success');
+    const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
 
     const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -46,22 +46,22 @@ const ForgetPasswordPage: React.FC = () => {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        
+        setMessage('');  // Clear any previous messages
         try {
-            await resetPassword(email);
-            setSuccessMsg('Reset link sent successfully. Please check your email.');
+            await requestResetLink(email);
+            setMessageType('success');
+            setMessage('Reset link sent successfully. Please check your email.');
             setOpenSnackbar(true);
-            setEmail('');  // Clear the email input after success
+            setEmail('');  // Clear the email field after successful submission
         } catch (error) {
             console.error('Send reset link failed:', error);
+            setMessageType('error');
             if (axios.isAxiosError(error)) {
-                setErrorMsg(error.response?.data.message || 'An unexpected error occurred. Please try again.');
-                setOpenSnackbar(true);
-                console.log('Snackbar should be open now with error');
+                setMessage(error.response?.data.message || 'An unexpected error occurred. Please try again.');
             } else {
-                setErrorMsg('An error occurred. Please try again.');
-                setOpenSnackbar(true);
+                setMessage('An error occurred. Please try again.');
             }
+            setOpenSnackbar(true);
         }
     };
 
@@ -73,16 +73,17 @@ const ForgetPasswordPage: React.FC = () => {
         <>
             <Header />
             <div className={classes.container}>
+                <Snackbar
+                    open={openSnackbar}
+                    onClose={handleCloseSnackbar}
+                    message={message}
+                    type={messageType}
+                />
                 <Card className={classes.card}>
                     <form onSubmit={handleSubmit}>
                         <Typography variant="h4" className={classes.title}>
                             Forgot Password
                         </Typography>
-                        {errorMsg && (
-                            <Typography color="error" style={{ textAlign: 'center' }}>
-                                {errorMsg}
-                            </Typography>
-                        )}
                         <TextField
                             label="Email Address"
                             type="email"
@@ -105,11 +106,6 @@ const ForgetPasswordPage: React.FC = () => {
                         </Button>
                     </form>
                 </Card>
-                <Snackbar
-                    open={openSnackbar}
-                    onClose={handleCloseSnackbar}
-                    message={successMsg}
-                />
             </div>
             <Footer />
         </>

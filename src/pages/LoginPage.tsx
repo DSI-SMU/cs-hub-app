@@ -8,6 +8,7 @@ import Footer from '../components/Footer';
 import { login } from '../apis/AuthService';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Snackbar from '../components/Snackbar';
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -60,9 +61,11 @@ const LoginPage: React.FC = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [errorMsg, setErrorMsg] = useState('');
-    const navigate = useNavigate();
+    const [message, setMessage] = useState<string>('');
+    const [messageType, setMessageType] = useState<'success' | 'error'>('success');
+    const [openSnackbar, setOpenSnackbar] = useState<boolean>(false);
 
+    const navigate = useNavigate();
 
     // Update the input fields state
     const handleUsernameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,33 +85,40 @@ const LoginPage: React.FC = () => {
             });
         } catch (error) {
             console.error('Login failed:', error);
+            setMessageType('error');
             if (axios.isAxiosError(error)) {
                 if (error.response && error.response.data && error.response.data.message) {
-                    setErrorMsg(error.response.data.message);
+                    setMessage(error.response.data.message);
                 } else {
-                    setErrorMsg('An unexpected error occurred. Please try again.');
+                    setMessage('An unexpected error occurred. Please try again.');
                 }
             } else {
             // Handle non-Axios errors
-                setErrorMsg('An error occurred. Please try again.');
+                setMessage('An error occurred. Please try again.');
             }
+            setOpenSnackbar(true);
         }
+    };
+
+    const handleCloseSnackbar = () => {
+        setOpenSnackbar(false);
     };
 
     return (
         <>
             <Header />
             <div className={classes.container}>
+                <Snackbar
+                    open={openSnackbar}
+                    onClose={handleCloseSnackbar}
+                    message={message}
+                    type={messageType}
+                />
                 <Card className={classes.card}>
                     <form onSubmit={handleSubmit}>
                         <Typography variant="h4" className={classes.title}>
             Log in
                         </Typography>
-                        {errorMsg && (
-                            <Typography color="error" style={{ textAlign: 'center' }}>
-                                {errorMsg}
-                            </Typography>
-                        )}
                         <TextField
                             label="Username"
                             type="text"

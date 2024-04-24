@@ -3,46 +3,58 @@ import ReactDOM from 'react-dom';
 
 // Define the type for Snackbar's props
 interface SnackbarProps {
-    message: string;          // The message content to display
-    open: boolean;            // Control the visibility of the Snackbar
-    duration?: number;        // The duration for which the message is displayed, default is 3000
-    onClose: () => void;      // Callback function to close the Snackbar
+    message: string;            // The content of the message to display
+    open: boolean;              // Controls the visibility of the Snackbar
+    duration?: number;          // Duration for which the message is displayed, default is 3000
+    onClose: () => void;        // Callback function to close the Snackbar
+    type?: 'success' | 'error';
 }
 
-// Snackbar component implementation
-const Snackbar: React.FC<SnackbarProps> = ({ message, open, duration = 3000, onClose }) => {
+// Implementation of the Snackbar component
+const Snackbar: React.FC<SnackbarProps> = ({
+    message,
+    open,
+    duration = 3000,
+    onClose,
+    type = 'success'
+}) => {
     useEffect(() => {
         if (open) {
-            const timer = setTimeout(() => {
-                onClose();  // Automatically call onClose to close the Snackbar
-            }, duration);
-            return () => clearTimeout(timer);  // Clear the timer
+            const timer = setTimeout(onClose, duration);  // Set timeout to close the Snackbar
+            return () => clearTimeout(timer);
         }
-    }, [open, duration, onClose]);  // Dependency list
+    }, [open, duration, onClose]);
 
-    if (!open) return null;  // Do not render anything if not open
+    if (!open) return null;  // Return null to not render anything if the Snackbar is not open
+
+    const backgroundColor = type === 'success' ? '#43a047' : '#d32f2f';
+
+    // Merge provided styles with default styles
+    const finalStyle = { ...snackbarStyle, backgroundColor };
 
     return ReactDOM.createPortal(
-        <div style={snackbarStyle}>
+        <div style={finalStyle}>
             {message}
         </div>,
-        document.body  // Append the Snackbar to the body element
+        document.body  // Render the component at the body level using React portal
     );
 };
 
-// Basic style for the Snackbar
+// Styles for the Snackbar, set to appear at the top and centered horizontally
 const snackbarStyle: React.CSSProperties = {
     position: 'fixed',
-    bottom: '20px',
-    right: '20px',
-    backgroundColor: '#323232',
-    color: 'white',
-    padding: '16px',
-    borderRadius: '4px',
-    boxShadow: '0px 2px 10px rgba(0, 0, 0, 0.1)',
-    zIndex: 1000,
-    maxWidth: '300px',
-    textAlign: 'center'
+    top: '70px',  // Set to 20px from the top of the viewport
+    left: '50%',  // Center horizontally
+    transform: 'translateX(-50%)', // Adjust position to ensure it's centered
+    backgroundColor: '#323232',  // Dark background color for visibility
+    color: 'white',  // Text color
+    padding: '10px 20px',  // Padding around the text
+    borderRadius: '4px',  // Rounded corners
+    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',  // Subtle shadow
+    zIndex: 1000,  // High z-index to ensure it's above other content
+    textAlign: 'center',  // Ensure the text is centered
+    width: 'auto',  // Auto width to adjust based on the content
+    maxWidth: '90%',  // Maximum width to prevent it from being too wide
 };
 
 export default Snackbar;

@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import axios from 'axios';
 import Snackbar from '../components/Snackbar';
-import { resetPassword } from '../apis/authService1';
+import { resetPassword } from '../apis/AuthService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({

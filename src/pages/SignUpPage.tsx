@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ReCAPTCHA from 'react-google-recaptcha';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { signUp } from '../apis/authService1';
+import { signUp } from '../apis/AuthService';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Snackbar from '../components/Snackbar';

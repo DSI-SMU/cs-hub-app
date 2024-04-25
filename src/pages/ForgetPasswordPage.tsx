@@ -3,7 +3,7 @@ import { TextField, Button, Card, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import { requestResetLink } from '../apis/AuthService';
+import { requestResetLink } from '../apis/authService1';
 import axios from 'axios';
 import Snackbar from '../components/Snackbar';
 

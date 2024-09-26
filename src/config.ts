@@ -3,6 +3,6 @@
 //       ? 'https://localhost:8080'
 //       : process.env.REACT_APP_BACKEND_URL;
 
-const BACKEND_BASE_URL = 'https://localhost:8080';
+const BACKEND_BASE_URL = 'http://localhost:8080';
       
 export { BACKEND_BASE_URL };

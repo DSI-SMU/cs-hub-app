@@ -13,28 +13,28 @@ import CardGrid from '../components/CardGrid';
 
 const cardInfos = [
     {
-        title: 'Projects',
+        title: 'Challenges',
         items: [
             {
-                text: 'No Default Project',
+                text: 'Challenges',
                 icon: <ViewListIcon />,
             },
             {
-                text: 'Projects List',
+                text: 'Projects Formed',
                 icon: <ViewModuleIcon />,
             },
             {
-                text: 'Users List',
+                text: 'Users',
                 icon: <ViewQuiltIcon />,
             },
             // ... add more items as needed
         ]
     }
     , {
-        title: 'NASA Researchers',
+        title: 'SMU Researchers',
         items: [
             {
-                text: 'NASA Researchers',
+                text: 'Researchers',
                 icon: <ViewListIcon />,
             },
             {
@@ -65,18 +65,18 @@ const cardInfos = [
         ]
     }
     , {
-        title: 'Collaboration Server',
+        title: 'SMU-Sci-Hub',
         items: [
             {
                 text: 'Visual Tutorials',
                 icon: <ViewListIcon />,
             },
             {
-                text: 'About NASA',
+                text: 'About Sci-Hub',
                 icon: <ViewModuleIcon />,
             },
             {
-                text: 'NASA Collaboration Server',
+                text: 'SMU-Sci-Hub Bot',
                 icon: <ViewQuiltIcon />,
             },
         ]

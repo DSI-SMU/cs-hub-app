@@ -42,7 +42,7 @@ const cardInfos = [
                 icon: <ViewModuleIcon />,
             },
             {
-                text: 'Find Researchers',
+                text: 'Find researchers',
                 icon: <ViewQuiltIcon />,
             },
         ]

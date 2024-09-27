@@ -44,7 +44,7 @@ const Header: React.FC = () => {
         <header className={classes.header}>
             <span>
                 <a href="https://www.nasa.gov/nex" target="_blank">
-                    <img src="/images/SMU_logo.png" alt="NASA Logo" className={classes.logo} />
+                    <img src="/images/SMU_logo.png" alt="SMU Logo" className={classes.logo} />
                 </a>
             </span>
             <div className={classes.navItems}>

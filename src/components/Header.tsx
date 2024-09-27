@@ -2,8 +2,6 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import LoginIcon from '@material-ui/icons/ExitToApp';
-import OrganizationIcon from '@material-ui/icons/ExitToApp';
-import ChallengeIcon from '@material-ui/icons/ExitToApp';
 import { Link } from 'react-router-dom';
 //update the navigation bar
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -25,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: '10px',
     },
     navItems: {
+        color: 'white',
         display: 'flex',
         alignItems: 'center',
         '& > *': {
@@ -54,12 +53,14 @@ const Header: React.FC = () => {
                 <Link to="/login" title="Login" className={classes.icon}>
                     <LoginIcon />
                 </Link>
-                <Link to="/organization" title="Organization" className={classes.icon}>
-                    <OrganizationIcon />
-                </Link>
-                <Link to="/challenge" title="Challenge" className={classes.icon}>
-                    <ChallengeIcon />
-                </Link>
+                Organization
+                Challenge
+                Project
+                Technology
+                Job
+                Researcher
+                User
+
             </div>
         </header>
     );

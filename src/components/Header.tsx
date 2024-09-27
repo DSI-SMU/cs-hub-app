@@ -46,12 +46,34 @@ const Header: React.FC = () => {
                 </a>
             </span>
             <div className={classes.navItems}>
+                <Link to="/organization-challenge" title="Organization Challenge" className={classes.icon}>
+                    Challenge
+                </Link>
+                <Link to="/organization-teams" title="Organization Teams" className={classes.icon}>
+                    Teams
+                </Link>
+                <Link to="/organization-projects" title="Organization Projects" className={classes.icon}>
+                    Projects
+                </Link>
+                <Link to="/organization-projects" title="Organization Projects" className={classes.icon}>
+                    Technology
+                </Link>
+                <Link to="/organization-projects" title="Organization Projects" className={classes.icon}>
+                    Job
+                </Link>
+                <Link to="/organization-projects" title="Organization Projects" className={classes.icon}>
+                    Researcher
+                </Link>
+                <Link to="/organization-projects" title="Organization Projects" className={classes.icon}>
+                    User
+                </Link>
                 <Link to="/" title="Home" className={classes.icon}>
                     <HomeIcon />
                 </Link>
                 <Link to="/login" title="Login" className={classes.icon}>
                     <LoginIcon />
                 </Link>
+                
             </div>
         </header>
     );

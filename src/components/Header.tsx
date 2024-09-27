@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import LoginIcon from '@material-ui/icons/ExitToApp';
 import OrganizationIcon from '@material-ui/icons/ExitToApp';
-
+import ChallengeIcon from '@material-ui/icons/ExitToApp';
 import { Link } from 'react-router-dom';
 //update the navigation bar
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

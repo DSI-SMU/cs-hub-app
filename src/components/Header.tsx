@@ -52,6 +52,30 @@ const Header: React.FC = () => {
                 <Link to="/login" title="Login" className={classes.icon}>
                     <LoginIcon />
                 </Link>
+                <Link to="/organization" title="Login" className={classes.icon}>
+                Organization
+                </Link>
+                <Link to="/challenge" title="Login" className={classes.icon}>
+                Challenge
+                </Link>
+                <Link to="/project" title="Login" className={classes.icon}>
+                Project
+                </Link>
+                <Link to="/technology" title="Login" className={classes.icon}>
+                Technology
+                </Link>
+                <Link to="/job" title="Login" className={classes.icon}>
+                Job
+                </Link> 
+                <Link to="/researcher" title="Login" className={classes.icon}>
+                Researcher
+                </Link>
+                <Link to="/user" title="Login" className={classes.icon}>
+                User
+                </Link>
+                <Link to="/admin" title="Login" className={classes.icon}>
+                Admin
+                </Link>
             </div>
         </header>
     );

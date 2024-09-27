@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
         '& > *': {
             marginRight: '15px',
         },
+        gap: '20px'
     },
     icon: {
         color: 'white',

@@ -107,14 +107,14 @@ const HomePage: React.FC = () => {
     const slides = [
         {
             id: 1,
-            title: 'First Slide',
-            subtitle: 'This is the first slide',
+            title: 'SMU-Sci-Hub',
+            subtitle: 'Intelligent Assistant Linking SMU to Local Industry',
             imageUrl: '/images/slide1.jpg',
         },
         {
             id: 2,
-            title: 'Second Slide',
-            subtitle: 'This is the second slide',
+            title: 'Window to SMU Technology',
+            subtitle: 'Help you to understand the exciting technology invented by SMU faculty and students.',
             imageUrl: '/images/slide1.jpg',
         },
     ];

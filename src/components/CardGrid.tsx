@@ -24,9 +24,10 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
         backgroundColor: theme.palette.background.default, // Adjust color as needed
         textAlign: 'center',
+        fontWeight: 'bold',
     },
     listItem: {
-        borderBottom: '1px solid #e0e0e0', // Change color as per your theme
+        borderTop: '1px solid #e0e0e0', // Change color as per your theme
     },
 }));
 

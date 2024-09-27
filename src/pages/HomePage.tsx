@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import ViewQuiltIcon from '@material-ui/icons/ViewQuilt';
+import ListIcon from '@material-ui/icons/List';
 import { Grid } from '@material-ui/core';
 import CardGrid from '../components/CardGrid';
 
@@ -17,15 +17,15 @@ const cardInfos = [
         items: [
             {
                 text: 'Challenges',
-                icon: <ViewListIcon />,
+                icon: <ListIcon />,
             },
             {
                 text: 'Projects Formed',
-                icon: <ViewModuleIcon />,
+                icon: <ViewListIcon />,
             },
             {
                 text: 'Users',
-                icon: <ViewQuiltIcon />,
+                icon: <ViewModuleIcon />,
             },
             // ... add more items as needed
         ]
@@ -35,15 +35,15 @@ const cardInfos = [
         items: [
             {
                 text: 'Researchers',
-                icon: <ViewListIcon />,
+                icon: <ListIcon />,
             },
             {
                 text: 'Technologies',
-                icon: <ViewModuleIcon />,
+                icon: <ViewListIcon />,
             },
             {
                 text: 'Find Researchers',
-                icon: <ViewQuiltIcon />,
+                icon: <ViewModuleIcon />,
             },
         ]
     }
@@ -52,15 +52,15 @@ const cardInfos = [
         items: [
             {
                 text: 'My Followers',
-                icon: <ViewListIcon />,
+                icon: <ListIcon />,
             },
             {
                 text: 'My Followees',
-                icon: <ViewModuleIcon />,
+                icon: <ViewListIcon />,
             },
             {
                 text: 'My Network',
-                icon: <ViewQuiltIcon />,
+                icon: <ViewModuleIcon />,
             },
         ]
     }
@@ -69,15 +69,15 @@ const cardInfos = [
         items: [
             {
                 text: 'Visual Tutorials',
-                icon: <ViewListIcon />,
+                icon: <ListIcon />,
             },
             {
                 text: 'About Sci-Hub',
-                icon: <ViewModuleIcon />,
+                icon: <ViewListIcon />,
             },
             {
                 text: 'SMU-Sci-Hub Bot',
-                icon: <ViewQuiltIcon />,
+                icon: <ViewModuleIcon />,
             },
         ]
     }

@@ -13,28 +13,28 @@ import CardGrid from '../components/CardGrid';
 
 const cardInfos = [
     {
-        title: 'Projects',
+        title: 'Challenges',
         items: [
             {
-                text: 'No Default Project',
+                text: 'Challenges',
                 icon: <ViewListIcon />,
             },
             {
-                text: 'Projects List',
+                text: 'Projects Formed',
                 icon: <ViewModuleIcon />,
             },
             {
-                text: 'Users List',
+                text: 'Users',
                 icon: <ViewQuiltIcon />,
             },
             // ... add more items as needed
         ]
     }
     , {
-        title: 'NASA Researchers',
+        title: 'SMU Researchers',
         items: [
             {
-                text: 'NASA Researchers',
+                text: 'Researchers',
                 icon: <ViewListIcon />,
             },
             {
@@ -65,18 +65,18 @@ const cardInfos = [
         ]
     }
     , {
-        title: 'Collaboration Server',
+        title: 'SMU-Sci-Hub',
         items: [
             {
                 text: 'Visual Tutorials',
                 icon: <ViewListIcon />,
             },
             {
-                text: 'About NASA',
+                text: 'About Sci-Hub',
                 icon: <ViewModuleIcon />,
             },
             {
-                text: 'NASA Collaboration Server',
+                text: 'SMU-Sci-Hub Bot',
                 icon: <ViewQuiltIcon />,
             },
         ]
@@ -107,14 +107,14 @@ const HomePage: React.FC = () => {
     const slides = [
         {
             id: 1,
-            title: 'First Slide',
-            subtitle: 'This is the first slide',
+            title: 'SMU-Sci-Hub',
+            subtitle: 'Intelligent Assistant Linking SMU to Local Industry',
             imageUrl: '/images/slide1.jpg',
         },
         {
             id: 2,
-            title: 'Second Slide',
-            subtitle: 'This is the second slide',
+            title: 'Window to SMU Technology',
+            subtitle: 'Help you to understand the exciting technology invented by SMU faculty and students',
             imageUrl: '/images/slide1.jpg',
         },
     ];

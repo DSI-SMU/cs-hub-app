@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import HomeIcon from '@material-ui/icons/Home';
 import LoginIcon from '@material-ui/icons/ExitToApp';
 import { Link } from 'react-router-dom';
-
+//update the navigation bar
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useStyles = makeStyles((theme) => ({
     header: {
@@ -42,7 +42,7 @@ const Header: React.FC = () => {
         <header className={classes.header}>
             <span>
                 <a href="https://www.nasa.gov/nex" target="_blank">
-                    <img src="/images/NASA.png" alt="NASA Logo" className={classes.logo} />
+                    <img src="/images/SMU_logo.png" alt="NASA Logo" className={classes.logo} />
                 </a>
             </span>
             <div className={classes.navItems}>

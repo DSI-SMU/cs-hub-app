@@ -52,28 +52,28 @@ const Header: React.FC = () => {
                 <Link to="/login" title="Login" className={classes.icon}>
                     <LoginIcon />
                 </Link>
-                <Link to="/organization" title="Login" className={classes.icon}>
+                <Link to="/organization" title="Organization" className={classes.icon}>
                 Organization
                 </Link>
-                <Link to="/challenge" title="Login" className={classes.icon}>
+                <Link to="/challenge" title="Challenge" className={classes.icon}>
                 Challenge
                 </Link>
-                <Link to="/project" title="Login" className={classes.icon}>
+                <Link to="/project" title="Project" className={classes.icon}>
                 Project
                 </Link>
-                <Link to="/technology" title="Login" className={classes.icon}>
+                <Link to="/technology" title="Technology" className={classes.icon}>
                 Technology
                 </Link>
-                <Link to="/job" title="Login" className={classes.icon}>
+                <Link to="/job" title="Job" className={classes.icon}>
                 Job
                 </Link> 
-                <Link to="/researcher" title="Login" className={classes.icon}>
+                <Link to="/researcher" title="Researcher" className={classes.icon}>
                 Researcher
                 </Link>
-                <Link to="/user" title="Login" className={classes.icon}>
+                <Link to="/user" title="User" className={classes.icon}>
                 User
                 </Link>
-                <Link to="/admin" title="Login" className={classes.icon}>
+                <Link to="/admin" title="Admin" className={classes.icon}>
                 Admin
                 </Link>
             </div>

@@ -7,43 +7,43 @@ import Footer from '../components/Footer';
 
 import ViewListIcon from '@material-ui/icons/ViewList';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
-import ViewQuiltIcon from '@material-ui/icons/ViewQuilt';
+import ListIcon from '@material-ui/icons/List';
 import { Grid } from '@material-ui/core';
 import CardGrid from '../components/CardGrid';
 
 const cardInfos = [
     {
-        title: 'Projects',
+        title: 'Challenges',
         items: [
             {
-                text: 'No Default Project',
+                text: 'Challenges',
+                icon: <ListIcon />,
+            },
+            {
+                text: 'Projects Formed',
                 icon: <ViewListIcon />,
             },
             {
-                text: 'Projects List',
+                text: 'Users',
                 icon: <ViewModuleIcon />,
-            },
-            {
-                text: 'Users List',
-                icon: <ViewQuiltIcon />,
             },
             // ... add more items as needed
         ]
     }
     , {
-        title: 'NASA Researchers',
+        title: 'SMU Researchers',
         items: [
             {
-                text: 'NASA Researchers',
-                icon: <ViewListIcon />,
+                text: 'Researchers',
+                icon: <ListIcon />,
             },
             {
                 text: 'Technologies',
-                icon: <ViewModuleIcon />,
+                icon: <ViewListIcon />,
             },
             {
                 text: 'Find Researchers',
-                icon: <ViewQuiltIcon />,
+                icon: <ViewModuleIcon />,
             },
         ]
     }
@@ -52,32 +52,32 @@ const cardInfos = [
         items: [
             {
                 text: 'My Followers',
-                icon: <ViewListIcon />,
+                icon: <ListIcon />,
             },
             {
                 text: 'My Followees',
-                icon: <ViewModuleIcon />,
+                icon: <ViewListIcon />,
             },
             {
                 text: 'My Network',
-                icon: <ViewQuiltIcon />,
+                icon: <ViewModuleIcon />,
             },
         ]
     }
     , {
-        title: 'Collaboration Server',
+        title: 'SMU-Sci-Hub',
         items: [
             {
                 text: 'Visual Tutorials',
+                icon: <ListIcon />,
+            },
+            {
+                text: 'About Sci-Hub',
                 icon: <ViewListIcon />,
             },
             {
-                text: 'About NASA',
+                text: 'SMU-Sci-Hub Bot',
                 icon: <ViewModuleIcon />,
-            },
-            {
-                text: 'NASA Collaboration Server',
-                icon: <ViewQuiltIcon />,
             },
         ]
     }
@@ -107,14 +107,14 @@ const HomePage: React.FC = () => {
     const slides = [
         {
             id: 1,
-            title: 'First Slide',
-            subtitle: 'This is the first slide',
+            title: 'SMU-Sci-Hub',
+            subtitle: 'Intelligent Assistant Linking SMU to Local Industry',
             imageUrl: '/images/slide1.jpg',
         },
         {
             id: 2,
-            title: 'Second Slide',
-            subtitle: 'This is the second slide',
+            title: 'Window to SMU Technology',
+            subtitle: 'Help you to understand the exciting technology invented by SMU faculty and students.',
             imageUrl: '/images/slide1.jpg',
         },
     ];
